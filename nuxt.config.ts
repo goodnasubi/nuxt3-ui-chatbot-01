@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxtjs/mdc'],
 
@@ -10,5 +10,10 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-  compatibilityDate: '2024-11-27'
+  compatibilityDate: '2024-11-27',
+
+  runtimeConfig: {
+    openaiApiKey: process.env.OPENAI_API_KEY,
+  },
+
 })

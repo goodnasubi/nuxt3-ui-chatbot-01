@@ -1,20 +1,29 @@
 <script lang="ts" setup>
-defineProps<{ loading: boolean }>()
+defineProps<{
+  loading: boolean,
+  handleSubmit: any
+ }>()
 
-const message = ref('')
-const emit = defineEmits<{ message: [message: string] }>()
+ const model = defineModel()
 
-const sendMessage = () => {
-  if (!message.value.trim()) return
-  emit('message', message.value)
-  message.value = ''
-}
+// const props = defineProps<{
+//   message: string
+// }>()
+
+// const message = ref('')
+// const emit = defineEmits<{ message: [message: string] }>()
+
+// const sendMessage = () => {
+//   if (!message.value.trim()) return
+//   emit('message', message.value)
+//   message.value = ''
+// }
 </script>
 
 <template>
   <div class="flex items-start p-3.5 relative">
     <UTextarea
-      v-model="message"
+      v-model="model"
       placeholder="Ask a question about this document..."
       class="w-full"
       :ui="{ base: ['pr-11'] }"
@@ -23,8 +32,7 @@ const sendMessage = () => {
       :disabled="loading"
       autoresize
       size="xl"
-      @keydown.enter.exact.prevent="sendMessage"
-      @keydown.enter.shift.exact.prevent="message += '\n'"
+      @keydown.enter.shift="handleSubmit"
     />
 
     <UButton
@@ -32,7 +40,7 @@ const sendMessage = () => {
       icon="i-heroicons-arrow-up-20-solid"
       class="absolute top-5 right-5"
       :disabled="loading "
-      @click="sendMessage"
+      @click="handleSubmit"
     />
   </div>
 </template>

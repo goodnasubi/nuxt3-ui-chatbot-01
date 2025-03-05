@@ -21,13 +21,9 @@
 
       <div class="overflow-y-auto h-full">
         <UContainer class="w-full h-full flex flex-col max-h-full max-w-3xl relative" v-resize-observer="onResizeObserver">
-          <ChatMessages v-show="messages.length" :response-messages="messages" />
+          <ChatMessages v-show="messages.length" :messages />
 
-          <ChatInput class="w-full absolute bottom-0 inset-x-0"
-            :loading="!isChatEnabled"
-            v-model="input"
-            :handle-submit="handleSubmit"
-            />
+          <ChatInput class="w-full absolute bottom-0 inset-x-0" :loading="!isChatEnabled" @message="sendMessage" />
         </UContainer>
       </div>
     </div>
@@ -39,7 +35,7 @@
 import { useChat } from '@ai-sdk/vue';
 import { vResizeObserver } from '@vueuse/components'
 
-// import type { QueryStreamResponse } from '~/types'
+import type { QueryStreamResponse } from '~/types'
 
 const sessionId = useState<string>('sessionId', () => crypto.randomUUID())
 // const informativeMessage = useInformativeMessage()
