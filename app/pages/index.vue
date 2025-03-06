@@ -24,7 +24,6 @@
           <ChatMessages v-show="messages.length" :response-messages="messages" />
 
           <ChatInput class="w-full absolute bottom-0 inset-x-0"
-            :loading="!isChatEnabled"
             v-model="input"
             :handle-submit="handleSubmit"
             />

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 defineProps<{
-  loading: boolean,
   handleSubmit: any
  }>()
 
@@ -18,6 +17,20 @@ defineProps<{
 //   emit('message', message.value)
 //   message.value = ''
 // }
+
+const toast = useToast()
+
+function sendMessage() {
+  toast.add({
+    title: ' 「' + model.value + '」送信中',
+    description: 'There was a problem with your request.',
+    icon: 'i-lucide-smile'
+  })
+  // handleSubmit()
+
+  // テキスト入力をキャンセルさせる
+  return true
+}
 </script>
 
 <template>
@@ -26,21 +39,21 @@ defineProps<{
       v-model="model"
       placeholder="Ask a question about this document..."
       class="w-full"
-      :ui="{ base: ['pr-11'] }"
       :rows="1"
-      :maxrows="5"
-      :disabled="loading"
+      :maxrows="10"
       autoresize
+      :autofocus-delay="1"
+      variant="subtle"
       size="xl"
-      @keydown.enter.shift="handleSubmit"
+      @keydown.enter.shift="sendMessage"
     />
 
     <UButton
       size="sm"
       icon="i-heroicons-arrow-up-20-solid"
       class="absolute top-5 right-5"
-      :disabled="loading "
-      @click="handleSubmit"
+      :disabled="!model"
+      @click="sendMessage"
     />
   </div>
 </template>
