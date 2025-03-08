@@ -1,4 +1,5 @@
 {
+  "name": "Node.js - nuxt3 - chatbot",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {}
