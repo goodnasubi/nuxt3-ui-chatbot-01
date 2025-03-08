@@ -1,11 +1,9 @@
 {
   "name": "Node.js - nuxt3 - chatbot",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {}
-  },
-  "postCreateCommand": "/bin/sh .devcontainer/postCreateCommand.sh",
-  "postStartCommand": "echo 'postStart'",
+  "forwardPorts": [3000],
+  "postCreateCommand": "corepack enable; npm install -g corepack@0.31.0",
+  "postStartCommand": "pnpm install",
   "customizations": {
     "vscode": {
       "extensions": [
