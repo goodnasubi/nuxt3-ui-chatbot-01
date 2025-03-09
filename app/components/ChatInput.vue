@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const prop =
 defineProps<{
   handleSubmit: any
  }>()
@@ -26,10 +27,27 @@ function sendMessage() {
     description: 'There was a problem with your request.',
     icon: 'i-lucide-smile'
   })
-  // handleSubmit()
+  prop.handleSubmit()
+}
 
-  // テキスト入力をキャンセルさせる
-  return true
+// function keyDownEnter(e: any) {
+//   console.log(e.keyCode)
+//   // this.keyDownCode = e.keyCode //enterを押した時のkeycodeを記録
+//   e.preventDefault()
+// }
+// function keyUpEnter(e: any) {
+//   if (this.keyDownCode === 229) { //229コードの場合は処理をストップ
+//     return
+//   }
+//   e.preventDefault()
+//   console.log(e.keyCode)
+//   sendMessage()
+// }
+function keyEnterShift(e: any) {
+  console.log('shift,enter')
+  e.preventDefault()
+  console.log(e.keyCode)
+  sendMessage()
 }
 </script>
 
@@ -45,7 +63,7 @@ function sendMessage() {
       :autofocus-delay="1"
       variant="subtle"
       size="xl"
-      @keydown.enter.shift="sendMessage"
+      @keydown.enter.shift="keyEnterShift"
     />
 
     <UButton
