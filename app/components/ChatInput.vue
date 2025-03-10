@@ -55,13 +55,14 @@ function keyEnterShift(e: any) {
   <div class="flex items-start p-3.5 relative">
     <UTextarea
       v-model="model"
-      placeholder="Ask a question about this document..."
+      placeholder="何かお困りのことがありますか？ ( shift + enter で質問します )"
       class="w-full"
       :rows="1"
       :maxrows="10"
+      :resize="false"
       autoresize
       :autofocus-delay="1"
-      variant="subtle"
+      variant="outline"
       size="xl"
       @keydown.enter.shift="keyEnterShift"
     />
